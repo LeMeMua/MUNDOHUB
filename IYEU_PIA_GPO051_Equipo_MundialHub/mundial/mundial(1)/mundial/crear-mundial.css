@@ -1,0 +1,271 @@
+/* Asumimos que las variables de color están definidas en un archivo styles.css o directamente en el :root del HTML */
+/* Si no están en form-styles.css, deben estar en un archivo enlazado antes. */
+
+/* * --------------------------------
+ * ESTILOS ESPECÍFICOS DEL FORMULARIO
+ * --------------------------------
+ */
+/* Contenedor Principal */
+.mundial-solo {
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 5%;
+  flex: 1;
+  width: 100%;
+}
+
+.form-main-title {
+  color: var(--secondary-color);
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 2.2rem;
+  font-family: "Garet", sans-serif;
+  font-weight: 700;
+}
+
+.form-subtitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.generador-mundial-form {
+  display: grid;
+  gap: 20px;
+}
+
+/* Estilo para las secciones del formulario (fieldset) */
+.form-section {
+  border: 1px solid var(--primary-color);
+  padding: 30px;
+  border-radius: 10px;
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--transition);
+}
+
+.form-section:hover {
+  box-shadow: 0 0 15px rgba(191, 21, 83, 0.4);
+}
+
+.form-section legend {
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-top: 100px;
+  font-family: "Garet", sans-serif;
+}
+
+.section-hint {
+  color: var(--text-color);
+  opacity: 0.7;
+  font-size: 0.9em;
+  margin-bottom: 15px;
+  border-left: 3px solid var(--secondary-color);
+  padding-left: 10px;
+}
+
+/* Grupos de campos */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  display: block;
+  color: var(--text-color);
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--text-color);
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-input:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 5px rgba(191, 21, 83, 0.7);
+  outline: none;
+}
+
+/* Contenedores Flex para grupos de inputs (Estadísticas y Partidos) */
+.stats-group-container,
+.match-group-container {
+  display: grid;
+  gap: 15px;
+}
+
+.stats-group-container {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.match-group-container {
+  grid-template-columns: 1fr auto 1fr;
+  align-items: flex-end;
+}
+
+.vs-separator {
+  color: var(--secondary-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.team-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.score-input {
+  width: 100%;
+  margin-top: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Estilos para la sección de Grupos */
+
+/* ESTILO DEL ENCABEZADO DE LA TABLA */
+.table-header {
+  display: grid;
+  /* 1. Etiqueta | 2. Nombre | 3. Ptos | 4. PJ | 5. PG | 6. PE | 7. PP */
+  grid-template-columns: 30px 1fr 50px 50px 50px 50px 50px;
+  gap: 10px;
+  align-items: center;
+  font-weight: 600;
+  padding: 0 10px;
+  margin-bottom: 5px;
+  border-bottom: 2px solid var(--secondary-color);
+}
+.table-header .team-label-header,
+.table-header .name-header {
+  text-align: left;
+}
+.table-header .small-header {
+  text-align: center;
+}
+
+/* ESTILO DE LA FILA DE EQUIPOS (team-row / equipo-grupo) */
+.team-row {
+  display: grid;
+  /* 1. Etiqueta | 2. Nombre | 3. Ptos | 4. PJ | 5. PG | 6. PE | 7. PP */
+  grid-template-columns: 30px 1fr 50px 50px 50px 50px 50px;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+
+.team-label {
+  grid-column: 1 / 2; /* Fija la etiqueta de posición */
+  margin: 0;
+  font-weight: 600;
+  color: var(--light-color);
+  text-align: center;
+}
+
+.team-name-input {
+  grid-column: 2 / 3; /* Fija el nombre del equipo */
+}
+
+/* Ajusta los inputs de estadísticas al tamaño fijo */
+.small-input {
+  text-align: center;
+  padding: 8px 5px;
+  width: auto; /* Permitir que el grid controle el ancho */
+}
+/* Asegurar que los inputs dentro de team-row tengan el fondo oscuro */
+.team-row .form-input {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--secondary-color);
+}
+
+/* Botón de acción principal */
+.form-action-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 30px 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  box-shadow: var(--shadow);
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.form-action-btn:hover {
+  background-color: #e62066;
+  transform: translateY(-2px);
+}
+
+.form-action-btn i {
+  margin-right: 10px;
+}
+
+/* --------------------------------
+ * RESPONSIVE
+ * --------------------------------
+ */
+@media (max-width: 768px) {
+  .match-group-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .team-input-wrapper {
+    align-items: center;
+    text-align: center;
+  }
+
+  .vs-separator {
+    margin: 5px 0;
+  }
+
+  /* Nueva configuración de GRUPO para móvil */
+  .table-header,
+  .team-row {
+    /* Nombre | Ptos | PJ | PG | PE | PP */
+    grid-template-columns: 1fr 45px 45px 45px 45px 45px;
+    gap: 5px;
+  }
+
+  .team-row .team-label,
+  .table-header .team-label-header {
+    display: none; /* Oculta la posición numérica */
+  }
+
+  .team-name-input,
+  .table-header .name-header {
+    grid-column: auto;
+    min-width: 80px;
+  }
+
+  .small-header,
+  .small-input {
+    font-size: 0.8rem;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 500px) {
+  .stats-group-container {
+    grid-template-columns: 1fr;
+  }
+  .form-main-title {
+    font-size: 1.8rem;
+  }
+}
