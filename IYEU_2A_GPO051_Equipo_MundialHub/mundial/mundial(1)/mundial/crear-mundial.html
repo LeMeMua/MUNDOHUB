@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MUNDIALHUB - Generador de Contenido</title>
+    <meta
+      name="description"
+      content="Generador y editor de contenido para mundiales de fútbol en MUNDIALHUB"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Garet:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="crear-mundial.css" />
+  </head>
+  <body>
+    <!-- Enlace de salto para accesibilidad -->
+
+    <header role="banner">
+      <div class="logo-container">
+        <button class="logo" id="homeBtn" aria-label="Ir a la página de inicio">
+          <i class="fas fa-futbol" aria-hidden="true"></i>
+        </button>
+        <h1 class="site-name">MUNDIALHUB</h1>
+      </div>
+
+      <nav
+        class="nav-links"
+        role="navigation"
+        aria-label="Navegación principal"
+      >
+        <button
+          class="nav-btn"
+          id="worldCupBtn"
+          aria-label="Ver información de mundiales"
+        >
+          <i class="fas fa-trophy" aria-hidden="true"></i>
+          <span>Mundiales</span>
+        </button>
+        <button class="nav-btn" id="postsBtn" aria-label="Ver publicaciones">
+          <i class="fas fa-newspaper" aria-hidden="true"></i>
+          <span>Publicaciones</span>
+        </button>
+
+        <button
+          class="mobile-search-btn"
+          id="mobileSearchBtn"
+          aria-label="Buscar en el sitio"
+        >
+          <i class="fas fa-search" aria-hidden="true"></i>
+        </button>
+
+        <button class="login-btn" id="loginBtn" aria-label="Iniciar sesión">
+          <i class="fas fa-user" aria-hidden="true"></i>
+        </button>
+        <button
+          class="help-btn"
+          id="helpBtn"
+          aria-label="Opciones de accesibilidad"
+        >
+          <i class="fas fa-question-circle" aria-hidden="true"></i>
+        </button>
+      </nav>
+    </header>
+
+    <main id="main-content" class="mundial-solo" role="main">
+      <h1 class="form-main-title">
+        <i class="fas fa-edit" aria-hidden="true"></i> Generador/Editor de
+        Contenido Mundial
+      </h1>
+      <p class="form-subtitle">
+        Usa este formulario para ingresar toda la información de un Mundial.
+      </p>
+
+      <form
+        class="generador-mundial-form"
+        id="mundialGeneratorForm"
+        aria-labelledby="form-title"
+      >
+        <fieldset class="form-section">
+          <legend>Información Principal</legend>
+          <div class="form-group">
+            <label class="form-label" for="nombreMundial">
+              Nombre del Mundial
+              <span class="required-asterisk" aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="nombreMundial"
+              class="form-input"
+              placeholder="Ej: QATAR 2022"
+              required
+              aria-required="true"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="imagenPrincipal">
+              Imagen Representativa (URL)
+            </label>
+            <input
+              type="url"
+              id="imagenPrincipal"
+              class="form-input"
+              placeholder="URL de la imagen principal del carrusel"
+              aria-describedby="url-help"
+            />
+            <small id="url-help" class="help-text"
+              >Ingresa una URL válida que comience con http:// o https://</small
+            >
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>Estadísticas del Mundial</legend>
+          <p class="form-subtitle">Ingresa los datos clave del torneo.</p>
+          <div
+            class="stats-group-container"
+            role="group"
+            aria-labelledby="stats-heading"
+          >
+            <div class="form-group">
+              <label class="form-label" for="goleador">Máximo Goleador</label>
+              <input
+                type="text"
+                id="goleador"
+                class="form-input"
+                placeholder="Ej: Kylian Mbappé (8)"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="asistidor">Máximo Asistidor</label>
+              <input
+                type="text"
+                id="asistidor"
+                class="form-input"
+                placeholder="Ej: Lionel Messi (3)"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="campeon">Campeón</label>
+              <input
+                type="text"
+                id="campeon"
+                class="form-input"
+                placeholder="Ej: Argentina"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="golesTotales">Goles Totales</label>
+              <input
+                type="number"
+                id="golesTotales"
+                class="form-input"
+                placeholder="Ej: 172"
+                min="0"
+                max="1000"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="equiposTotales"
+                >Total de Equipos</label
+              >
+              <input
+                type="number"
+                id="equiposTotales"
+                class="form-input"
+                placeholder="Ej: 32"
+                min="0"
+                max="64"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="partidosTotales"
+                >Total de Partidos</label
+              >
+              <input
+                type="number"
+                id="partidosTotales"
+                class="form-input"
+                placeholder="Ej: 64"
+                min="0"
+                max="200"
+              />
+            </div>
+
+            <div class="form-group" style="width: 100%">
+              <label class="form-label" for="asistenciaTotal"
+                >Asistencia (Público Total)</label
+              >
+              <input
+                type="number"
+                id="asistenciaTotal"
+                class="form-input"
+                placeholder="Ej: 3404252"
+                min="0"
+              />
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>Resultado de Partidos Clave</legend>
+          <p class="form-subtitle">
+            Selecciona un partido para ingresar o editar su resultado.
+          </p>
+
+          <div class="form-group">
+            <label class="form-label" for="selectorPartido">
+              Seleccionar Partido
+              <span class="required-asterisk" aria-hidden="true">*</span>
+            </label>
+            <select
+              id="selectorPartido"
+              class="form-input"
+              required
+              aria-required="true"
+            >
+              <option value="" disabled selected>Elige un Partido</option>
+
+              <optgroup label="Fase Final">
+                <option value="Partido 64 - Final">Final</option>
+                <option value="Partido 63 - Tercer Lugar">
+                  Partido por el Tercer Lugar
+                </option>
+                <option value="Partido 61 - Semifinal 1">Semifinal (1)</option>
+                <option value="Partido 62 - Semifinal 2">Semifinal (2)</option>
+              </optgroup>
+
+              <optgroup label="Cuartos de Final">
+                <option value="Partido 57 - Cuartos 1">
+                  Cuartos de Final (1)
+                </option>
+                <option value="Partido 58 - Cuartos 2">
+                  Cuartos de Final (2)
+                </option>
+                <option value="Partido 59 - Cuartos 3">
+                  Cuartos de Final (3)
+                </option>
+                <option value="Partido 60 - Cuartos 4">
+                  Cuartos de Final (4)
+                </option>
+              </optgroup>
+
+              <optgroup label="Octavos de Final">
+                <option value="Partido 49 - Octavos 1">
+                  Octavos de Final (1)
+                </option>
+                <option value="Partido 50 - Octavos 2">
+                  Octavos de Final (2)
+                </option>
+                <option value="Partido 51 - Octavos 3">
+                  Octavos de Final (3)
+                </option>
+                <option value="Partido 52 - Octavos 4">
+                  Octavos de Final (4)
+                </option>
+                <option value="Partido 53 - Octavos 5">
+                  Octavos de Final (5)
+                </option>
+                <option value="Partido 54 - Octavos 6">
+                  Octavos de Final (6)
+                </option>
+                <option value="Partido 55 - Octavos 7">
+                  Octavos de Final (7)
+                </option>
+                <option value="Partido 56 - Octavos 8">
+                  Octavos de Final (8)
+                </option>
+              </optgroup>
+
+              <optgroup label="Fase de Grupos - Día 1 y 2">
+                <option value="Partido 1 - Grupo A">
+                  Grupo A (1) - Inaugural
+                </option>
+                <option value="Partido 2 - Grupo A">Grupo A (2)</option>
+                <option value="Partido 17 - Grupo A">Grupo A (3)</option>
+                <option value="Partido 18 - Grupo A">Grupo A (4)</option>
+                <option value="Partido 33 - Grupo A">
+                  Grupo A (5) - Definición
+                </option>
+                <option value="Partido 34 - Grupo A">
+                  Grupo A (6) - Definición
+                </option>
+                <option value="Partido 3 - Grupo B">Grupo B (1)</option>
+                <option value="Partido 4 - Grupo B">Grupo B (2)</option>
+                <option value="Partido 19 - Grupo B">Grupo B (3)</option>
+                <option value="Partido 20 - Grupo B">Grupo B (4)</option>
+                <option value="Partido 35 - Grupo B">
+                  Grupo B (5) - Definición
+                </option>
+                <option value="Partido 36 - Grupo B">
+                  Grupo B (6) - Definición
+                </option>
+              </optgroup>
+
+              <optgroup label="Fase de Grupos - Día 3 y 4">
+                <option value="Partido 5 - Grupo C">Grupo C (1)</option>
+                <option value="Partido 6 - Grupo C">Grupo C (2)</option>
+                <option value="Partido 21 - Grupo C">Grupo C (3)</option>
+                <option value="Partido 22 - Grupo C">Grupo C (4)</option>
+                <option value="Partido 37 - Grupo C">
+                  Grupo C (5) - Definición
+                </option>
+                <option value="Partido 38 - Grupo C">
+                  Grupo C (6) - Definición
+                </option>
+                <option value="Partido 7 - Grupo D">Grupo D (1)</option>
+                <option value="Partido 8 - Grupo D">Grupo D (2)</option>
+                <option value="Partido 23 - Grupo D">Grupo D (3)</option>
+                <option value="Partido 24 - Grupo D">Grupo D (4)</option>
+                <option value="Partido 39 - Grupo D">
+                  Grupo D (5) - Definición
+                </option>
+                <option value="Partido 40 - Grupo D">
+                  Grupo D (6) - Definición
+                </option>
+              </optgroup>
+
+              <optgroup label="Fase de Grupos - Día 5 y 6">
+                <option value="Partido 9 - Grupo E">Grupo E (1)</option>
+                <option value="Partido 10 - Grupo E">Grupo E (2)</option>
+                <option value="Partido 25 - Grupo E">Grupo E (3)</option>
+                <option value="Partido 26 - Grupo E">Grupo E (4)</option>
+                <option value="Partido 41 - Grupo E">
+                  Grupo E (5) - Definición
+                </option>
+                <option value="Partido 42 - Grupo E">
+                  Grupo E (6) - Definición
+                </option>
+                <option value="Partido 11 - Grupo F">Grupo F (1)</option>
+                <option value="Partido 12 - Grupo F">Grupo F (2)</option>
+                <option value="Partido 27 - Grupo F">Grupo F (3)</option>
+                <option value="Partido 28 - Grupo F">Grupo F (4)</option>
+                <option value="Partido 43 - Grupo F">
+                  Grupo F (5) - Definición
+                </option>
+                <option value="Partido 44 - Grupo F">
+                  Grupo F (6) - Definición
+                </option>
+              </optgroup>
+
+              <optgroup label="Fase de Grupos - Día 7 y 8">
+                <option value="Partido 13 - Grupo G">Grupo G (1)</option>
+                <option value="Partido 14 - Grupo G">Grupo G (2)</option>
+                <option value="Partido 29 - Grupo G">Grupo G (3)</option>
+                <option value="Partido 30 - Grupo G">Grupo G (4)</option>
+                <option value="Partido 45 - Grupo G">
+                  Grupo G (5) - Definición
+                </option>
+                <option value="Partido 46 - Grupo G">
+                  Grupo G (6) - Definición
+                </option>
+                <option value="Partido 15 - Grupo H">Grupo H (1)</option>
+                <option value="Partido 16 - Grupo H">Grupo H (2)</option>
+                <option value="Partido 31 - Grupo H">Grupo H (3)</option>
+                <option value="Partido 32 - Grupo H">Grupo H (4)</option>
+                <option value="Partido 47 - Grupo H">
+                  Grupo H (5) - Definición
+                </option>
+                <option value="Partido 48 - Grupo H">
+                  Grupo H (6) - Definición
+                </option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div
+            class="match-group-container"
+            role="group"
+            aria-labelledby="match-heading"
+          >
+            <div class="team-input-wrapper">
+              <label class="form-label" for="equipo1">Equipo 1</label>
+              <input
+                type="text"
+                id="equipo1"
+                class="form-input"
+                placeholder="Ej: Argentina"
+              />
+              <label class="sr-only" for="score1">Goles del Equipo 1</label>
+              <input
+                type="text"
+                id="score1"
+                class="form-input score-input"
+                placeholder="Goles (Ej: 3 (4))"
+                aria-describedby="score-help"
+              />
+            </div>
+            <div class="vs-separator" aria-hidden="true">VS</div>
+            <div class="team-input-wrapper">
+              <label class="form-label" for="equipo2">Equipo 2</label>
+              <input
+                type="text"
+                id="equipo2"
+                class="form-input"
+                placeholder="Ej: Francia"
+              />
+              <label class="sr-only" for="score2">Goles del Equipo 2</label>
+              <input
+                type="text"
+                id="score2"
+                class="form-input score-input"
+                placeholder="Goles (Ej: 3 (2))"
+                aria-describedby="score-help"
+              />
+            </div>
+          </div>
+          <small id="score-help" class="help-text"
+            >Formato: Goles en tiempo regular (goles en penales)</small
+          >
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>Sedes Destacadas</legend>
+          <p class="section-hint">
+            Datos para la Sede Principal (Sede de la Final)
+          </p>
+          <div class="form-group">
+            <label class="form-label" for="sedeNombre1"
+              >Nombre de la Sede</label
+            >
+            <input
+              type="text"
+              id="sedeNombre1"
+              class="form-input"
+              placeholder="Ej: Estadio Lusail"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sedeDireccion1"
+              >Descripción/Dirección</label
+            >
+            <input
+              type="text"
+              id="sedeDireccion1"
+              class="form-input"
+              placeholder="Ej: Sede de la Final"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="sedeImg1"
+              >Imagen de la Sede (URL)</label
+            >
+            <input
+              type="url"
+              id="sedeImg1"
+              class="form-input"
+              placeholder="URL de la imagen del estadio"
+            />
+          </div>
+        </fieldset>
+
+        <!-- Tablas de grupos (solo mostrando una como ejemplo) -->
+        <fieldset class="form-section group-table-section">
+          <legend>Tabla de Posiciones - Grupo A</legend>
+          <p class="section-hint">
+            Introduce Nombre, Puntos (Ptos), Partidos Jugados (PJ), Ganados
+            (PG), Empatados (PE) y Perdidos (PP) para cada equipo.
+          </p>
+
+          <div class="table-header team-row" role="row">
+            <span class="team-label-header" role="columnheader">No.E</span>
+            <span class="name-header" role="columnheader">Nombre</span>
+            <span class="small-header" role="columnheader">Ptos</span>
+            <span class="small-header" role="columnheader">PJ</span>
+            <span class="small-header" role="columnheader">PG</span>
+            <span class="small-header" role="columnheader">PE</span>
+            <span class="small-header" role="columnheader">PP</span>
+          </div>
+
+          <div id="grupo-a-teams" role="presentation">
+            <!-- Equipo 1 -->
+            <div class="equipo-grupo team-row" role="row">
+              <label class="form-label team-label" for="equipoA1">1</label>
+              <input
+                type="text"
+                id="equipoA1"
+                class="form-input team-name-input"
+                placeholder="Nombre"
+                aria-label="Nombre del equipo 1 del Grupo A"
+              />
+              <input
+                type="number"
+                id="puntosA1"
+                class="form-input small-input"
+                placeholder="Ptos"
+                aria-label="Puntos del equipo 1 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="pjA1"
+                class="form-input small-input"
+                placeholder="PJ"
+                aria-label="Partidos jugados del equipo 1 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="pgA1"
+                class="form-input small-input"
+                placeholder="PG"
+                aria-label="Partidos ganados del equipo 1 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="peA1"
+                class="form-input small-input"
+                placeholder="PE"
+                aria-label="Partidos empatados del equipo 1 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="ppA1"
+                class="form-input small-input"
+                placeholder="PP"
+                aria-label="Partidos perdidos del equipo 1 del Grupo A"
+                min="0"
+              />
+            </div>
+
+            <!-- Equipo 2 -->
+            <div class="equipo-grupo team-row" role="row">
+              <label class="form-label team-label" for="equipoA2">2</label>
+              <input
+                type="text"
+                id="equipoA2"
+                class="form-input team-name-input"
+                placeholder="Nombre"
+                aria-label="Nombre del equipo 2 del Grupo A"
+              />
+              <input
+                type="number"
+                id="puntosA2"
+                class="form-input small-input"
+                placeholder="Ptos"
+                aria-label="Puntos del equipo 2 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="pjA2"
+                class="form-input small-input"
+                placeholder="PJ"
+                aria-label="Partidos jugados del equipo 2 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="pgA2"
+                class="form-input small-input"
+                placeholder="PG"
+                aria-label="Partidos ganados del equipo 2 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="peA2"
+                class="form-input small-input"
+                placeholder="PE"
+                aria-label="Partidos empatados del equipo 2 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="ppA2"
+                class="form-input small-input"
+                placeholder="PP"
+                aria-label="Partidos perdidos del equipo 2 del Grupo A"
+                min="0"
+              />
+            </div>
+
+            <!-- Equipo 3 -->
+            <div class="equipo-grupo team-row" role="row">
+              <label class="form-label team-label" for="equipoA3">3</label>
+              <input
+                type="text"
+                id="equipoA3"
+                class="form-input team-name-input"
+                placeholder="Nombre"
+                aria-label="Nombre del equipo 3 del Grupo A"
+              />
+              <input
+                type="number"
+                id="puntosA3"
+                class="form-input small-input"
+                placeholder="Ptos"
+                aria-label="Puntos del equipo 3 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="pjA3"
+                class="form-input small-input"
+                placeholder="PJ"
+                aria-label="Partidos jugados del equipo 3 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="pgA3"
+                class="form-input small-input"
+                placeholder="PG"
+                aria-label="Partidos ganados del equipo 3 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="peA3"
+                class="form-input small-input"
+                placeholder="PE"
+                aria-label="Partidos empatados del equipo 3 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="ppA3"
+                class="form-input small-input"
+                placeholder="PP"
+                aria-label="Partidos perdidos del equipo 3 del Grupo A"
+                min="0"
+              />
+            </div>
+
+            <!-- Equipo 4 -->
+            <div class="equipo-grupo team-row" role="row">
+              <label class="form-label team-label" for="equipoA4">4</label>
+              <input
+                type="text"
+                id="equipoA4"
+                class="form-input team-name-input"
+                placeholder="Nombre"
+                aria-label="Nombre del equipo 4 del Grupo A"
+              />
+              <input
+                type="number"
+                id="puntosA4"
+                class="form-input small-input"
+                placeholder="Ptos"
+                aria-label="Puntos del equipo 4 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="pjA4"
+                class="form-input small-input"
+                placeholder="PJ"
+                aria-label="Partidos jugados del equipo 4 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="pgA4"
+                class="form-input small-input"
+                placeholder="PG"
+                aria-label="Partidos ganados del equipo 4 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="peA4"
+                class="form-input small-input"
+                placeholder="PE"
+                aria-label="Partidos empatados del equipo 4 del Grupo A"
+                min="0"
+              />
+              <input
+                type="number"
+                id="ppA4"
+                class="form-input small-input"
+                placeholder="PP"
+                aria-label="Partidos perdidos del equipo 4 del Grupo A"
+                min="0"
+              />
+            </div>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="submit-btn form-action-btn">
+          <i class="fas fa-save" aria-hidden="true"></i> Guardar y Generar
+          Contenido
+        </button>
+      </form>
+    </main>
+
+    <div class="botones" role="toolbar" aria-label="Acciones rápidas">
+      <button
+        class="tutorial-btn"
+        id="tutorialBtn"
+        aria-label="Ver tutorial del sitio"
+      >
+        <i class="fas fa-info-circle" aria-hidden="true"></i>
+        Tutorial
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+      <p>MUNDIALHUB &copy; 2025</p>
+      <p>Tu portal de referencia para todo sobre los mundiales de fútbol</p>
+    </footer>
+
+    <!-- Modales -->
+    <div
+      class="modal"
+      id="loginModal"
+      role="dialog"
+      aria-labelledby="login-title"
+      aria-modal="true"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="login-title" class="modal-title">Iniciar Sesión</h2>
+          <button
+            class="close-btn"
+            id="closeLoginModal"
+            aria-label="Cerrar ventana de inicio de sesión"
+          >
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="loginForm">
+            <div class="form-group">
+              <label class="form-label" for="username">
+                Usuario o Email
+                <span class="required-asterisk" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="username"
+                class="form-input"
+                placeholder="Ingresa tu usuario o email"
+                required
+                aria-required="true"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="password">
+                Contraseña
+                <span class="required-asterisk" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="password"
+                id="password"
+                class="form-input"
+                placeholder="Ingresa tu contraseña"
+                required
+                aria-required="true"
+              />
+            </div>
+            <button type="submit" class="submit-btn">Iniciar Sesión</button>
+          </form>
+          <p style="text-align: center; margin-top: 1rem">
+            ¿No tienes cuenta?
+            <a
+              href="registro.html"
+              style="color: var(--secondary-color); font-weight: 600"
+              >Regístrate aquí</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal"
+      id="tutorialModal"
+      role="dialog"
+      aria-labelledby="tutorial-title"
+      aria-modal="true"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="tutorial-title" class="modal-title">Cómo usar MUNDIALHUB</h2>
+          <button
+            class="close-btn"
+            id="closeTutorialModal"
+            aria-label="Cerrar tutorial"
+          >
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="tutorial-content">
+            <div class="tutorial-step">
+              <div class="step-number" aria-hidden="true">1</div>
+              <div>
+                <h3>Navega por los mundiales</h3>
+                <p>
+                  Usa el botón "Mundiales" en la parte superior para explorar
+                  información sobre todas las ediciones de la Copa del Mundo.
+                </p>
+              </div>
+            </div>
+            <div class="tutorial-step">
+              <div class="step-number" aria-hidden="true">2</div>
+              <div>
+                <h3>Lee las publicaciones</h3>
+                <p>
+                  Accede a artículos y noticias recientes haciendo clic en el
+                  botón "Publicaciones".
+                </p>
+              </div>
+            </div>
+            <div class="tutorial-step">
+              <div class="step-number" aria-hidden="true">3</div>
+              <div>
+                <h3>Busca contenido específico</h3>
+                <p>
+                  Utiliza la barra de búsqueda en la parte superior derecha para
+                  encontrar información sobre equipos, jugadores o eventos
+                  específicos.
+                </p>
+              </div>
+            </div>
+            <div class="tutorial-step">
+              <div class="step-number" aria-hidden="true">4</div>
+              <div>
+                <h3>Inicia sesión</h3>
+                <p>
+                  Haz clic en el icono de usuario para acceder a tu cuenta y
+                  personalizar tu experiencia.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal"
+      id="accessibilityModal"
+      role="dialog"
+      aria-labelledby="accessibility-title"
+      aria-modal="true"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="accessibility-title" class="modal-title">
+            Opciones de Accesibilidad
+          </h2>
+          <button
+            class="close-btn"
+            id="closeAccessibilityModal"
+            aria-label="Cerrar opciones de accesibilidad"
+          >
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="accessibility-options">
+            <div class="option-group">
+              <div class="option-content">
+                <div class="option-header">
+                  <span class="option-label">
+                    <i class="fas fa-sun" aria-hidden="true"></i>
+                    Modo Claro
+                  </span>
+                </div>
+                <p class="option-description">
+                  Cambia entre modo oscuro y claro para mejor visibilidad
+                </p>
+                <div class="option-controls">
+                  <label class="toggle-switch" for="lightModeToggle">
+                    <input type="checkbox" id="lightModeToggle" />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Resto de opciones de accesibilidad con mejoras similares -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <svg
+      class="svg-filters"
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.1"
+      aria-hidden="true"
+    >
+      <defs>
+        <filter id="protanopia-filter" color-interpolation-filters="sRGB">
+          <feColorMatrix
+            type="matrix"
+            values="0.567, 0.433, 0, 0, 0
+                                               0.558, 0.442, 0, 0, 0
+                                               0, 0.242, 0.758, 0, 0
+                                               0, 0, 0, 1, 0"
+          />
+        </filter>
+        <!-- Resto de filtros -->
+      </defs>
+    </svg>
+
+    <!-- Mobile Search Modal -->
+    <div
+      class="modal"
+      id="mobileSearchModal"
+      role="dialog"
+      aria-labelledby="search-title"
+      aria-modal="true"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="search-title" class="modal-title">Buscar en MUNDIALHUB</h2>
+          <button
+            class="close-btn"
+            id="closeMobileSearchModal"
+            aria-label="Cerrar búsqueda"
+          >
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="mobileSearchInput" class="sr-only"
+              >Buscar en MUNDIALHUB</label
+            >
+            <input
+              type="text"
+              id="mobileSearchInput"
+              class="form-input"
+              placeholder="Escribe lo que buscas..."
+            />
+          </div>
+          <button class="submit-btn">Buscar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="mundial.js"></script>
+  </body>
+</html>
